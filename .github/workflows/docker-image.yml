@@ -1,18 +1,23 @@
-name: Docker Image CI
+name: Docker Flask CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ main ]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
+    
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file Dockerfile --tag my-flask-app
+
+    - name: Run the Docker container
+      run: docker run -d -p 5000:5000 my-flask-app
+
+    # Optional: Add additional steps to test your application
+    # - name: Test
+    #   run: docker exec my-flask-app pytest
