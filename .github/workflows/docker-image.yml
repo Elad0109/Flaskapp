@@ -16,7 +16,7 @@ jobs:
       run: docker build . --file Dockerfile --tag my-flask-app
 
     - name: Run the Docker container
-      run: docker run -d -p 5000:5000 my-flask-app
+      run: docker run -d -p 8080:8080 my-flask-app
 
     # Optional: Add additional steps to test your application
     # - name: Test
